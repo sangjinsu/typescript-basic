@@ -5,11 +5,15 @@
   - Do it 타입스크립트 프로그래밍
   - (인사이트) 타입스크립트 프로그밍
 
-| Date       | Content                     | Link                                                         |
-| ---------- | --------------------------- | ------------------------------------------------------------ |
-| 2021.08.29 | 타입스크립트 기본 타입 선언 | [go](https://github.com/jinsuSang/typescript-basic#chapter03-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B8%B0%EB%B3%B8-%ED%83%80%EC%9E%85-%EC%84%A0%EC%96%B8) |
-| 2021.08.29 | 타입스크립트 시작하기       |                                                              |
-| 2021.08.29 | 타입스크립트 소개와 배경    |                                                              |
+| Date       | Content                              | Link                                                         |
+| ---------- | ------------------------------------ | ------------------------------------------------------------ |
+| 2021.09.04 | enum                                 |                                                              |
+| 2021.09.04 | 타입 별칭, 연산자를 이용한 타입 정의 |                                                              |
+| 2021.09.04 | 인터페이스                           |                                                              |
+| 2021.09.04 | 할 일 관리 애플리케이션              |                                                              |
+| 2021.08.29 | 타입스크립트 기본 타입 선언          | [go](https://github.com/jinsuSang/typescript-basic#chapter03-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B8%B0%EB%B3%B8-%ED%83%80%EC%9E%85-%EC%84%A0%EC%96%B8) |
+| 2021.08.29 | 타입스크립트 시작하기                |                                                              |
+| 2021.08.29 | 타입스크립트 소개와 배경             |                                                              |
 
 ## chapter01 타입스크립트 소개와 배경
 
@@ -125,8 +129,81 @@
     log('hi', 'hello') // "hi" "hello"
     ```
 
-    
+## chapter05 인터페이스
 
-    
+```typescript
+// 함수 스펙
+interface SumFunc {
+  (a: number, b: number): number
+}
 
-    
+const sum1: SumFunc = (a: number, b: number) => {
+  return a + b
+}
+
+// 인덱싱
+interface StringArr {
+  [idx: number]: string
+}
+
+const arr: StringArr = ['a', 'b', 'c']
+
+// 딕셔너리
+interface StringDict {
+  [key: string]: string
+}
+```
+
+- 인터페이스는 상속이 가능하다
+
+## chapter06 타입 별칭, 연산자를 이용한 타입 정의
+
+- 타입 별칭과 인터페이스의 차이점은 확장이다. 타입 별칭은 확장이 불가한 대신 인터페이스는 확장(상속) 이 가능하다
+
+  #### 유니온 타입과 인터섹션 타입
+
+```typescript
+// 유니온 타입
+// 타입을 추론하고 그에 해당하는 타입의 내장 함수를 사용할 수 있다
+function logMessage(value: string | number) {
+  if (typeof value === 'string') {
+    value.toString()
+  }
+
+  if (typeof value === 'number') {
+    value.toLocaleString()
+  }
+}
+
+// 유니온 타입 특징
+// 공통 속성만 접근이 가능하다
+
+// 인터섹션 타입
+// 인터섹션 타입의 조건을 모두 만족하는 타입만을 사용한다
+function askSomeone2(someone: Developer & Person) {
+  console.log(someone.age)
+  console.log(someone.language)
+  console.log(someone.name)
+}
+```
+
+## chapter07 enum
+
+```typescript
+enum Answer {
+  Yes = 'Yes',
+  No = 'No',
+}
+function ask(answer: Answer) {
+  if (answer === Answer.Yes) {
+    console.log('correct')
+  }
+  if (answer === Answer.No) {
+    console.log('wrong')
+  }
+}
+
+ask(Answer.Yes)
+```
+
+- `enum` 의 활용 예시 => 인자로서 값의 범위를 제한하는데 사용된다
