@@ -207,3 +207,40 @@ ask(Answer.Yes)
 ```
 
 - `enum` 의 활용 예시 => 인자로서 값의 범위를 제한하는데 사용된다
+
+## chapter08 class
+
+```js
+class Person1 {
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+  }
+}
+
+const person1 = new Person1('jinsu', 27)
+
+// prototype 상속
+var user = { name: 'jinsu', age: 27 }
+var admin = {}
+admin.__proto__ = user
+admin.role = 'admin'
+
+// prototype new 키워드
+function Person2(name, age) {
+  this.name = name
+  this.age = age
+}
+
+var o = new Object()
+o.__proto__ = Person2.prototype
+Person2.call(o)
+```
+
+```typescript
+class PersonTS {
+  constructor(public name: string, public age: number) {}
+}
+// 접근자 사용 가능 
+```
+
