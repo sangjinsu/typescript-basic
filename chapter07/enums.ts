@@ -17,7 +17,7 @@ enum Car {
 }
 
 enum Answer {
-  Yes = '?Yes',
+  Yes = 'Yes',
   No = 'No',
 }
 function ask(answer: Answer) {
