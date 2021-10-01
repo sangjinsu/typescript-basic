@@ -254,4 +254,41 @@
 
   
 
+## Chapter 08 Class
+
+- 자바스크립트 클래스
+
+  ```js
+  class Person1 {
+    constructor(name, age) {
+      this.name = name
+      this.age = age
+    }
+  }
+  
+  // prototype 상속
+  var user = { name: 'jinsu', age: 27 }
+  var admin = {}
+  admin.__proto__ = user
+  admin.role = 'admin'
+  
+  // prototype new 키워드
+  function Person2(name, age) {
+    this.name = name
+    this.age = age
+  }
+  
+  var o = new Object()
+  o.__proto__ = Person2.prototype
+  Person2.call(o)
+  ```
+
+- 타입스크립트 클래스
+
+  ```typescript
+  class PersonTS {
+    constructor(public name: string, public age: number) {}
+  }
+  ```
+
   
